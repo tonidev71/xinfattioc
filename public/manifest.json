@@ -1,0 +1,17 @@
+{
+  "short_name": "XINFATTIOC",
+  "name": "XINFATTIOC Social",
+  "icons": [
+    {
+      "src": "/icono-xinfattioc.png", 
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/login", 
+  "background_color": "#001f5b",
+  "theme_color": "#ff4e00",
+  "display": "standalone",
+  "orientation": "portrait"
+}
