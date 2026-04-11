@@ -3,15 +3,13 @@
   "name": "XINFATTIOC Social",
   "icons": [
     {
-      "src": "/icono-xinfattioc.png", 
+      "src": "icono-xinfattioc.png", 
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     }
   ],
-  "start_url": "/login", 
-  "background_color": "#001f5b",
-  "theme_color": "#ff4e00",
+  "start_url": ".", 
   "display": "standalone",
-  "orientation": "portrait"
+  "theme_color": "#ff4e00",
+  "background_color": "#001f5b"
 }
