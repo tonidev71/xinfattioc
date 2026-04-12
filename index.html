@@ -3,179 +3,115 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Xinfattioc - Orange Edition</title>
+  <title>Xinfattioc - Acceso Privado</title>
   <link rel="icon" type="image/png" href="/icon-192x192.png">
   <link rel="apple-touch-icon" href="/icon-192x192.png">
   <link rel="manifest" href="/manifest.json">
-
   <style>
-    /* Estilo Moderno - Blanco y Naranja */
+    /* Estilo Minimalista y Fino */
     :root {
-      --naranja: #ff6600; /* Tu naranja del icono */
-      --naranja-claro: #ff8533;
-      --azul-oscuro: #1a1a1a;
-      --fondo-body: #ffffff; /* Body bien claro */
-      --gris-suave: #f4f4f4;
+      --naranja-fino: #ff7b25;
+      --gris-texto: #444;
+      --gris-borde: #e0e0e0;
     }
 
     body {
-      background-color: var(--fondo-body);
-      font-family: 'Segoe UI', Roboto, sans-serif;
-      margin: 0;
-      padding: 0;
+      background: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
-      color: var(--azul-oscuro);
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      color: var(--gris-texto);
     }
 
-    /* Cabecera */
-    header {
-      width: 100%;
-      background: var(--azul-oscuro);
-      color: var(--naranja);
-      padding: 15px 0;
-      text-align: center;
-      border-bottom: 4px solid var(--naranja);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    /* Contenedor Login */
-    .main-container {
-      background: white;
+    .login-card {
       width: 85%;
-      max-width: 400px;
-      margin: 40px auto;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-      border: 1px solid #eee;
+      max-width: 320px;
       text-align: center;
+    }
+
+    img.logo {
+      width: 70px;
+      margin-bottom: 20px;
+      filter: grayscale(20%); /* Un toque más serio */
     }
 
     h1 {
-      color: var(--naranja);
+      font-weight: 300; /* Letra fina */
       font-size: 24px;
-      margin-bottom: 20px;
+      letter-spacing: 2px;
+      margin-bottom: 30px;
+      color: #000;
     }
 
     input {
       width: 100%;
-      padding: 14px;
-      margin: 8px 0;
-      border: 2px solid #eee;
-      border-radius: 12px;
+      padding: 12px 0;
+      margin: 10px 0;
+      border: none;
+      border-bottom: 1px solid var(--gris-borde); /* Solo una línea abajo */
       box-sizing: border-box;
       font-size: 16px;
+      outline: none;
+      transition: border-color 0.3s;
     }
 
     input:focus {
-      border-color: var(--naranja);
-      outline: none;
+      border-bottom: 1px solid var(--naranja-fino);
     }
 
+    /* El botón "Finito" que querías */
     button {
       width: 100%;
-      padding: 15px;
-      margin-top: 15px;
-      background: var(--naranja);
-      color: white;
-      border: none;
-      border-radius: 12px;
-      font-weight: bold;
-      font-size: 17px;
+      padding: 12px;
+      margin-top: 35px;
+      background: transparent; /* Sin fondo naranja pesado */
+      color: var(--naranja-fino);
+      border: 1px solid var(--naranja-fino); /* Borde finito */
+      border-radius: 5px;
+      font-size: 14px;
+      letter-spacing: 1px;
       cursor: pointer;
-      transition: 0.3s;
+      transition: all 0.3s;
     }
 
     button:hover {
-      background: var(--naranja-claro);
-      transform: scale(1.02);
-    }
-
-    /* Sección de Vídeos y Anuncios */
-    .feed {
-      width: 95%;
-      max-width: 500px;
-      padding-bottom: 60px;
-    }
-
-    .ad-box {
-      background: #fff5ed;
-      border-left: 5px solid var(--naranja);
-      padding: 15px;
-      margin: 20px 0;
-      border-radius: 8px;
-      font-size: 14px;
-    }
-
-    .video-card {
-      background: white;
-      border-radius: 15px;
-      overflow: hidden;
-      margin-bottom: 25px;
-      border: 1px solid #eee;
-    }
-
-    video {
-      width: 100%;
-      background: #000;
-      display: block;
-    }
-
-    .video-info {
-      padding: 15px;
-    }
-
-    .upload-btn {
-      display: block;
-      width: 60px;
-      height: 60px;
-      background: var(--naranja);
+      background: var(--naranja-fino);
       color: white;
-      border-radius: 50%;
-      text-align: center;
-      line-height: 60px;
-      font-size: 30px;
-      margin: 20px auto;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(255, 102, 0, 0.4);
+    }
+
+    .copyright {
+      margin-top: 40px;
+      font-size: 10px;
+      color: #aaa;
+      letter-spacing: 0.5px;
+      line-height: 1.6;
+    }
+
+    .copyright a {
+      color: #aaa;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <div style="font-weight: bold; font-size: 22px; letter-spacing: 1px;">XINFATTIOC</div>
-  </header>
-
-  <div class="main-container">
-    <h1>Inicia Sesión</h1>
+  <div class="login-card">
+    <img src="/icon-192x192.png" alt="X" class="logo">
+    <h1>XINFATTIOC</h1>
+    
     <input type="text" placeholder="Usuario">
     <input type="password" placeholder="Contraseña">
-    <button>ACCEDER</button>
-  </div>
+    
+    <button onclick="window.location.href='app.html'">ACCEDER</button>
 
-  <div class="feed">
-    <div class="ad-box">
-      <strong>PUBLICIDAD:</strong> ¡Sube tus vídeos virales y gana visibilidad en Xinfattioc! 🚀
+    <div class="copyright">
+      RESERVADO DERECHO <br>
+      <a href="https://www.tonidev71.com">WWW.TONIDEV71.COM</a> &copy;
     </div>
-
-    <h2 style="border-left: 4px solid var(--naranja); padding-left: 10px; margin-left: 5px;">Vídeos Virales</h2>
-
-    <div class="video-card">
-      <video controls poster="https://via.placeholder.com/500x280/1a1a1a/ff6600?text=Cargando+Video...">
-        <source src="#" type="video/mp4">
-      </video>
-      <div class="video-info">
-        <p style="font-weight: bold; margin: 0;">Próximamente: Contenido Viral Orange</p>
-        <small style="color: #999;">Nuevo contenido cada día</small>
-      </div>
-    </div>
-
-    <label for="video-file" class="upload-btn">＋</label>
-    <input type="file" id="video-file" accept="video/*" style="display: none;">
-    <p style="text-align: center; color: var(--naranja); font-weight: bold;">Subir Vídeo</p>
   </div>
 
 </body>
