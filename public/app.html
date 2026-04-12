@@ -3,154 +3,114 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Xinfattioc - Full Social</title>
+  <title>Xinfattioc - Publicar</title>
   <style>
-    :root { --naranja: #ff7b25; --azul: #0a192f; --fondo: #f0f2f5; }
-    body { background: var(--fondo); font-family: sans-serif; margin: 0; padding-bottom: 80px; }
+    :root { --naranja: #ff7b25; --azul: #0a192f; --fondo: #ffffff; }
+    body { background: var(--fondo); font-family: sans-serif; margin: 0; padding-bottom: 100px; }
+    header { background: var(--azul); color: var(--naranja); padding: 15px; text-align: center; font-weight: bold; border-bottom: 3px solid var(--naranja); }
     
-    header { background: var(--azul); color: var(--naranja); padding: 15px; text-align: center; font-weight: bold; border-bottom: 3px solid var(--naranja); position: sticky; top: 0; z-index: 100; }
+    .layout { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 15px; max-width: 1200px; margin: 20px auto; padding: 0 10px; }
+    @media (max-width: 800px) { .layout { grid-template-columns: 1fr; } aside { display: none; } }
 
-    /* LAYOUT REJILLA (Visible en móvil también) */
-    .layout { 
-      display: grid; 
-      grid-template-columns: 1fr 2fr 1fr; /* 3 columnas */
-      gap: 10px; 
-      max-width: 1200px; 
-      margin: 10px auto; 
-    }
-
-    /* En móviles muy estrechos, ajustamos un poco */
-    @media (max-width: 600px) {
-      .layout { grid-template-columns: 1fr; }
-      aside { display: none; } /* En móvil muy pequeño mejor ocultar, pero en tablets se verá */
-    }
-
-    aside { background: white; padding: 10px; border-radius: 10px; height: fit-content; border: 1px solid #ddd; }
+    /* CAJA DE PUBLICAR (Lo que te faltaba) */
+    .create-post { background: white; padding: 20px; border-radius: 15px; border: 1px solid #eee; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 20px; }
     
-    /* FEED */
-    .post { background: white; border-radius: 12px; margin-bottom: 15px; border: 1px solid #ddd; overflow: hidden; }
-    .post-header { padding: 10px; display: flex; align-items: center; font-weight: bold; }
-    .user-icon { width: 30px; height: 30px; background: linear-gradient(45deg, var(--azul), var(--naranja)); border-radius: 6px; margin-right: 10px; }
+    textarea { width: 100%; border: none; border-bottom: 1px solid #eee; resize: none; font-size: 16px; outline: none; margin-bottom: 15px; font-family: inherit; }
     
-    /* Imagen/Video del post */
-    .media-container { background: #000; min-height: 200px; display: flex; align-items: center; }
-    .media-container img, .media-container video { width: 100%; }
+    .preview-zone { width: 100%; border-radius: 10px; overflow: hidden; background: #f9f9f9; margin-bottom: 10px; }
+    .preview-zone img, .preview-zone video { width: 100%; display: block; }
 
-    /* ACCIONES */
-    .actions { display: flex; border-top: 1px solid #eee; padding: 5px; }
-    .btn { flex: 1; padding: 10px; background: none; border: none; cursor: pointer; font-weight: bold; color: #555; }
-    .btn-like.active { color: var(--naranja); }
+    .btn-publicar { background: var(--naranja); color: white; border: none; padding: 12px 25px; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; }
 
-    /* REJILLA DE COMENTARIOS */
-    .comments-box { padding: 10px; background: #fafafa; border-top: 1px solid #eee; }
-    .comment-list { font-size: 13px; margin-bottom: 10px; max-height: 100px; overflow-y: auto; }
-    .comment-item { margin-bottom: 5px; border-bottom: 1px solid #eee; padding-bottom: 2px; }
-    .comment-input-grid { display: grid; grid-template-columns: 1fr 80px; gap: 5px; }
-    .comment-input-grid input { padding: 8px; border-radius: 5px; border: 1px solid #ddd; }
-    .comment-input-grid button { background: var(--azul); color: white; border: none; border-radius: 5px; cursor: pointer; }
-
-    /* SUBIDA */
-    .nav-bottom { position: fixed; bottom: 0; width: 100%; background: var(--azul); padding: 15px; text-align: center; border-top: 3px solid var(--naranja); }
-    .btn-subir { color: var(--naranja); font-weight: bold; cursor: pointer; font-size: 16px; }
+    /* ASIDES */
+    aside { background: #fafafa; padding: 15px; border-radius: 10px; border: 1px solid #eee; height: fit-content; }
   </style>
 </head>
 <body>
 
-  <header>XINFATTIOC</header>
+<header>XINFATTIOC</header>
 
-  <div class="layout">
-    <aside>
-      <h4 style="color:var(--naranja)">VIRAL</h4>
-      <div id="viral-content">
-        <p style="font-size:12px;">Cargando tendencias...</p>
+<div class="layout">
+  <aside>
+    <h4 style="color:var(--naranja)">VÍDEOS VIRALES</h4>
+    <div style="background:#000; height:150px; border-radius:8px;"></div>
+  </aside>
+
+  <main>
+    <div class="create-post">
+      <h3 style="margin-top:0; font-weight:300;">¿Qué está pasando, Marajá?</h3>
+      
+      <textarea id="post-text" rows="3" placeholder="Escribe aquí tu mensaje..."></textarea>
+      
+      <div class="preview-zone" id="preview-box">
+        <p style="text-align:center; color:#ccc; padding:20px;">Sin multimedia seleccionada</p>
       </div>
-    </aside>
 
-    <main id="main-feed">
-      <div class="post">
-        <div class="post-header"><div class="user-icon"></div> ToniDev71</div>
-        <div class="media-container" id="preview-container">
-            <img src="https://via.placeholder.com/500x300/0a192f/ff7b25?text=Tu+Foto+Aparecera+Aqui" id="post-img">
-        </div>
-        <div class="actions">
-          <button class="btn btn-like" onclick="this.classList.toggle('active')">❤️ Me gusta</button>
-          <button class="btn" onclick="compartir()">📤 Compartir</button>
-        </div>
-        
-        <div class="comments-box">
-          <div class="comment-list" id="lista-comentarios">
-            <div class="comment-item"><b>Admin:</b> ¡Bienvenidos a Xinfattioc!</div>
-          </div>
-          <div class="comment-input-grid">
-            <input type="text" id="nuevo-comentario" placeholder="Escribe un comentario...">
-            <button onclick="agregarComentario()">Enviar</button>
-          </div>
-        </div>
+      <div style="display:flex; gap:10px;">
+        <label style="flex:1; text-align:center; padding:10px; border:1px solid var(--naranja); border-radius:8px; color:var(--naranja); cursor:pointer;">
+          📷 Foto/Vídeo
+          <input type="file" id="file-input" style="display:none" accept="image/*,video/*" onchange="mostrarPreview(this)">
+        </label>
+        <button class="btn-publicar" onclick="publicarPost()">PUBLICAR</button>
       </div>
-    </main>
+    </div>
 
-    <aside>
-      <h4 style="color:var(--naranja)">PROMO</h4>
-      <p id="promo-text" style="font-size:13px;">💎 Espacio Publicitario VIP</p>
-    </aside>
-  </div>
+    <div id="feed-dinamico"></div>
+  </main>
 
-  <div class="nav-bottom">
-    <label class="btn-subir">
-      ➕ SUBIR CONTENIDO (FOTO/VÍDEO)
-      <input type="file" id="input-file" accept="image/*,video/*" style="display:none" onchange="previsualizar(this)">
-    </label>
-  </div>
+  <aside>
+    <h4 style="color:var(--naranja)">ANUNCIOS</h4>
+    <p style="font-size:12px;">💎 Espacio exclusivo para publicidad real.</p>
+  </aside>
+</div>
 
-  <script>
-    // FUNCION SUBIR (PREVISUALIZAR)
-    function previsualizar(input) {
-      if (input.files && input.files[0]) {
-        const reader = new FileReader();
-        const container = document.getElementById('preview-container');
-        const file = input.files[0];
-
-        reader.onload = function(e) {
-          if (file.type.includes('video')) {
-            container.innerHTML = `<video controls autoplay src="${e.target.result}" style="width:100%"></video>`;
-          } else {
-            container.innerHTML = `<img src="${e.target.result}" style="width:100%">`;
-          }
-        };
-        reader.readAsDataURL(file);
+<script>
+  // Mostrar lo que seleccionas
+  function mostrarPreview(input) {
+    const box = document.getElementById('preview-box');
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        if (input.files[0].type.includes('video')) {
+          box.innerHTML = `<video controls src="${e.target.result}" style="width:100%"></video>`;
+        } else {
+          box.innerHTML = `<img src="${e.target.result}">`;
+        }
       }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  // Función para "Publicar" (conecta con tu idea de base de datos)
+  function publicarPost() {
+    const texto = document.getElementById('post-text').value;
+    const media = document.getElementById('preview-box').innerHTML;
+    const feed = document.getElementById('feed-dinamico');
+
+    if(texto.trim() === "" && media.includes('multimedia')) {
+      alert("Escribe algo o sube una foto");
+      return;
     }
 
-    // FUNCION COMENTAR
-    function agregarComentario() {
-      const input = document.getElementById('nuevo-comentario');
-      const lista = document.getElementById('lista-comentarios');
-      if (input.value.trim() !== "") {
-        const div = document.createElement('div');
-        div.className = 'comment-item';
-        div.innerHTML = `<b>Tú:</b> ${input.value}`;
-        lista.appendChild(div);
-        input.value = "";
-        lista.scrollTop = lista.scrollHeight;
-      }
-    }
+    // Crear el post visualmente
+    const nuevoPost = document.createElement('div');
+    nuevoPost.style = "background:white; padding:15px; border-radius:15px; margin-bottom:20px; border:1px solid #eee;";
+    nuevoPost.innerHTML = `
+      <div style="font-weight:bold; margin-bottom:10px;">ToniDev71</div>
+      <p>${texto}</p>
+      <div style="border-radius:10px; overflow:hidden;">${media}</div>
+      <div style="margin-top:10px; display:flex; gap:20px; font-size:14px; color:#666;">
+        <span>❤️ Me gusta</span> <span>💬 Comentar</span> <span>📤 Compartir</span>
+      </div>
+    `;
+    
+    feed.prepend(nuevoPost); // Pone el post arriba de todo
+    
+    // Limpiar campos
+    document.getElementById('post-text').value = "";
+    document.getElementById('preview-box').innerHTML = '<p style="text-align:center; color:#ccc; padding:20px;">Sin multimedia seleccionada</p>';
+  }
+</script>
 
-    // FUNCION COMPARTIR
-    function compartir() {
-      if (navigator.share) {
-        navigator.share({ title: 'Xinfattioc', url: window.location.href });
-      } else {
-        alert("Enlace copiado al portapapeles");
-      }
-    }
-
-    // ANUNCIOS
-    const promos = ["💎 Club VIP ToniDev", "🚀 Tu marca aquí", "🧡 Éxito Total"];
-    let i = 0;
-    setInterval(() => {
-      document.getElementById('promo-text').innerText = promos[i];
-      i = (i + 1) % promos.length;
-    }, 4000);
-  </script>
 </body>
 </html>
