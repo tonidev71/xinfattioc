@@ -3,116 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Xinfattioc - Acceso Privado</title>
-  <link rel="icon" type="image/png" href="/icon-192x192.png">
-  <link rel="apple-touch-icon" href="/icon-192x192.png">
-  <link rel="manifest" href="/manifest.json">
+  <title>Xinfattioc - Login</title>
   <style>
-    /* Estilo Minimalista y Fino */
-    :root {
-      --naranja-fino: #ff7b25;
-      --gris-texto: #444;
-      --gris-borde: #e0e0e0;
-    }
-
-    body {
-      background: #ffffff;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      color: var(--gris-texto);
-    }
-
-    .login-card {
-      width: 85%;
-      max-width: 320px;
-      text-align: center;
-    }
-
-    img.logo {
-      width: 70px;
-      margin-bottom: 20px;
-      filter: grayscale(20%); /* Un toque más serio */
-    }
-
-    h1 {
-      font-weight: 300; /* Letra fina */
-      font-size: 24px;
-      letter-spacing: 2px;
-      margin-bottom: 30px;
-      color: #000;
-    }
-
-    input {
-      width: 100%;
-      padding: 12px 0;
-      margin: 10px 0;
-      border: none;
-      border-bottom: 1px solid var(--gris-borde); /* Solo una línea abajo */
-      box-sizing: border-box;
-      font-size: 16px;
-      outline: none;
-      transition: border-color 0.3s;
-    }
-
-    input:focus {
-      border-bottom: 1px solid var(--naranja-fino);
-    }
-
-    /* El botón "Finito" que querías */
-    button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 35px;
-      background: transparent; /* Sin fondo naranja pesado */
-      color: var(--naranja-fino);
-      border: 1px solid var(--naranja-fino); /* Borde finito */
-      border-radius: 5px;
-      font-size: 14px;
-      letter-spacing: 1px;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    button:hover {
-      background: var(--naranja-fino);
-      color: white;
-    }
-
-    .copyright {
-      margin-top: 40px;
-      font-size: 10px;
-      color: #aaa;
-      letter-spacing: 0.5px;
-      line-height: 1.6;
-    }
-
-    .copyright a {
-      color: #aaa;
-      text-decoration: none;
-    }
+    :root { --naranja: #ff7b25; --azul: #0a192f; }
+    body { background: #ffffff; font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+    .login-card { width: 85%; max-width: 320px; text-align: center; }
+    h1 { font-weight: 300; letter-spacing: 2px; color: var(--azul); }
+    input { width: 100%; padding: 12px 0; margin: 10px 0; border: none; border-bottom: 1px solid #eee; outline: none; }
+    button { width: 100%; padding: 12px; margin-top: 30px; background: transparent; color: var(--naranja); border: 1px solid var(--naranja); border-radius: 5px; cursor: pointer; }
+    .copy { margin-top: 40px; font-size: 10px; color: #aaa; }
   </style>
 </head>
 <body>
-
   <div class="login-card">
-    <img src="/icon-192x192.png" alt="X" class="logo">
+    <img src="/icon-192x192.png" width="70">
     <h1>XINFATTIOC</h1>
-    
     <input type="text" placeholder="Usuario">
     <input type="password" placeholder="Contraseña">
-    
-    <button onclick="window.location.href='app.html'">ACCEDER</button>
-
-    <div class="copyright">
-      RESERVADO DERECHO <br>
-      <a href="https://www.tonidev71.com">WWW.TONIDEV71.COM</a> &copy;
-    </div>
+    <button onclick="window.location.href='/app.html'">ACCEDER</button>
+    <div class="copy">RESERVADO DERECHO <br> WWW.TONIDEV71.COM &copy;</div>
   </div>
-
 </body>
 </html>

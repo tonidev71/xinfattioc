@@ -3,199 +3,74 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Xinfattioc - Social Network</title>
+  <title>Xinfattioc - Feed</title>
   <style>
-    :root { 
-      --naranja: #ff7b25; 
-      --azul-x: #0a192f; 
-      --fondo: #f0f2f5; 
-      --blanco: #ffffff; 
-    }
+    :root { --naranja: #ff7b25; --azul: #0a192f; --gris: #f0f2f5; }
+    body { background: var(--gris); font-family: sans-serif; margin: 0; }
+    header { background: var(--azul); color: var(--naranja); padding: 15px; text-align: center; border-bottom: 3px solid var(--naranja); position: sticky; top: 0; z-index: 10; }
     
-    body { 
-      background: var(--fondo); 
-      font-family: 'Segoe UI', sans-serif; 
-      margin: 0; 
-      display: flex; 
-      flex-direction: column; 
-      min-height: 100vh;
-    }
-
-    /* Header con los dos colores */
-    header { 
-      background: var(--azul-x); 
-      color: var(--naranja); 
-      padding: 15px; 
-      text-align: center; 
-      font-weight: bold; 
-      letter-spacing: 3px; 
-      border-bottom: 3px solid var(--naranja);
-      position: sticky; top: 0; z-index: 1000;
-    }
-
-    /* Layout de 3 columnas para PC */
-    .main-layout {
-      display: flex;
-      justify-content: center;
-      max-width: 1200px;
-      margin: 20px auto;
-      gap: 20px;
-      width: 100%;
-    }
-
-    /* ASIDES (Laterales) */
-    aside {
-      width: 250px;
-      display: none; /* Se ocultan en móvil */
-    }
-
-    @media (min-width: 1000px) {
-      aside { display: block; }
-    }
-
-    .sidebar-card {
-      background: var(--blanco);
-      border-radius: 12px;
-      padding: 15px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    /* FEED CENTRAL */
-    .feed { flex: 1; max-width: 550px; padding: 0 10px; }
-
-    .post { 
-      background: var(--blanco); 
-      border-radius: 12px; 
-      margin-bottom: 20px; 
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
-      border: 1px solid #e0e0e0;
-    }
-
-    .post-header { 
-      padding: 12px; 
-      display: flex; 
-      align-items: center; 
-      font-weight: bold; 
-    }
-
-    /* El iconito naranja y azul que pediste */
-    .user-icon { 
-      width: 35px; height: 35px; 
-      background: linear-gradient(135deg, var(--azul-x) 50%, var(--naranja) 50%);
-      border-radius: 8px; /* Un poco cuadrado/redondeado más moderno */
-      margin-right: 10px;
-      border: 1px solid #ddd;
-    }
-
-    .post-content img, .post-content video { width: 100%; display: block; }
-
-    /* Botones funcionales */
-    .post-actions { display: flex; padding: 10px; border-top: 1px solid #eee; }
-    .action-btn { 
-      flex: 1; background: none; border: none; 
-      color: #65676b; font-weight: 600; cursor: pointer; 
-      padding: 10px; transition: 0.3s;
-    }
-    .action-btn.active { color: var(--naranja); scale: 1.1; }
-
-    /* Barra inferior */
-    .bottom-nav { 
-      position: fixed; bottom: 0; width: 100%; 
-      background: var(--azul-x); display: flex; 
-      justify-content: space-around; padding: 12px 0; 
-      border-top: 2px solid var(--naranja); 
-    }
+    .layout { display: flex; justify-content: center; max-width: 1100px; margin: 20px auto; gap: 20px; }
     
-    .upload-btn { color: var(--naranja); font-weight: bold; cursor: pointer; }
+    /* ASIDES */
+    aside { width: 250px; }
+    @media (max-width: 900px) { aside { display: none; } } /* En móvil se ocultan */
 
-    /* Estilo de los anuncios */
-    #ad-space { color: #555; font-size: 14px; text-align: center; }
+    .card { background: white; padding: 15px; border-radius: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px; }
+    
+    /* FEED */
+    .feed { flex: 1; max-width: 500px; }
+    .post { background: white; border-radius: 12px; margin-bottom: 20px; overflow: hidden; border: 1px solid #ddd; }
+    .post-header { padding: 10px; display: flex; align-items: center; font-weight: bold; }
+    .user-icon { width: 30px; height: 30px; background: linear-gradient(45deg, var(--azul), var(--naranja)); border-radius: 6px; margin-right: 10px; }
+    
+    .actions { display: flex; border-top: 1px solid #eee; }
+    .btn { flex: 1; padding: 10px; background: none; border: none; cursor: pointer; color: #666; font-weight: bold; }
+    .active-like { color: var(--naranja) !important; }
+
+    .nav-subir { position: fixed; bottom: 0; width: 100%; background: var(--azul); padding: 15px; text-align: center; border-top: 2px solid var(--naranja); }
   </style>
 </head>
 <body>
-
   <header>XINFATTIOC</header>
-
-  <div class="main-layout">
-    
+  <div class="layout">
     <aside>
-      <div class="sidebar-card">
-        <h3 style="color: var(--azul-x); font-size: 16px;">🔥 Viral ahora</h3>
-        <video autoplay muted loop style="width:100%; border-radius:8px;">
-          <source src="#" type="video/mp4">
-        </video>
-        <p style="font-size: 12px;">Lo más visto en el Reino.</p>
+      <div class="card">
+        <h4 style="color:var(--naranja)">VIRAL</h4>
+        <video controls width="100%"><source src="#" type="video/mp4"></video>
       </div>
     </aside>
 
     <main class="feed">
       <div class="post">
         <div class="post-header"><div class="user-icon"></div> ToniDev71</div>
-        <div class="post-content">
-          <img src="https://via.placeholder.com/500x500/0a192f/ff7b25?text=Xinfattioc+Post" alt="Post">
-        </div>
-        <div class="post-actions">
-          <button class="action-btn" onclick="like(this)">❤️ Me gusta</button>
-          <button class="action-btn" onclick="comment(this)">💬 Comentar</button>
-          <button class="action-btn" onclick="share()">📤 Compartir</button>
-        </div>
-        <div id="comment-area" style="padding: 10px; display:none;">
-          <input type="text" placeholder="Escribe algo..." style="width:90%; padding:8px; border-radius:20px; border:1px solid #ccc;">
+        <img src="https://via.placeholder.com/500x500/0a192f/ff7b25?text=Xinfattioc+Social" width="100%">
+        <div class="actions">
+          <button class="btn" onclick="this.classList.toggle('active-like')">❤️ Me gusta</button>
+          <button class="btn" onclick="alert('Cajetilla de comentarios abierta')">💬 Comentar</button>
+          <button class="btn" onclick="alert('Copiado para compartir')">📤 Compartir</button>
         </div>
       </div>
     </main>
 
     <aside>
-      <div class="sidebar-card">
-        <div id="ad-space">
-          <p id="ad-text">Cargando publicidad real...</p>
-        </div>
+      <div class="card" id="publicidad">
+        <p style="font-size: 12px; color: #999;">ANUNCIO</p>
+        <p id="txt-anuncio">💎 Vive con estilo Xinfattioc</p>
       </div>
     </aside>
-
   </div>
 
-  <div class="bottom-nav">
-    <label for="file-upload" class="upload-btn">➕ SUBIR POST</label>
-    <input id="file-upload" type="file" accept="image/*,video/*" style="display:none;">
+  <div class="nav-subir">
+    <label style="color:var(--naranja); cursor:pointer;">➕ SUBIR VÍDEO O FOTO <input type="file" style="display:none"></label>
   </div>
 
   <script>
-    // Lógica para el botón Me gusta
-    function like(btn) {
-      btn.classList.toggle('active');
-      btn.innerHTML = btn.classList.contains('active') ? '🧡 ¡Te gusta!' : '❤️ Me gusta';
-    }
-
-    // Lógica para mostrar comentarios
-    function comment(btn) {
-      const area = btn.parentElement.nextElementSibling;
-      area.style.display = area.style.display === 'none' ? 'block' : 'none';
-    }
-
-    // Lógica para compartir
-    function share() {
-      if (navigator.share) {
-        navigator.share({ title: 'Xinfattioc', url: window.location.href });
-      } else {
-        alert("Enlace copiado al portapapeles");
-      }
-    }
-
-    // Anuncios que cambian solos
-    const anuncios = [
-      "💎 Únete al Club VIP de Xinfattioc",
-      "🚀 Impulsa tu negocio con ToniDev71",
-      "⌚ Vive el lujo, vive naranja",
-      "🌟 Publicidad exclusiva aquí"
-    ];
-    let index = 0;
+    const frases = ["💎 Club VIP ToniDev", "🚀 Impulsa tu marca", "🧡 El color del éxito"];
+    let i = 0;
     setInterval(() => {
-      index = (index + 1) % anuncios.length;
-      document.getElementById('ad-text').innerText = anuncios[index];
-    }, 3000); // Cambia cada 3 segundos
+      document.getElementById('txt-anuncio').innerText = frases[i];
+      i = (i + 1) % frases.length;
+    }, 3000);
   </script>
-
 </body>
 </html>
