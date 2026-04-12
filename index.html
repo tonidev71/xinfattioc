@@ -1,27 +1,182 @@
-<!doctype html>
-<html lang="en">
-
+<!DOCTYPE html>
+<html lang="es">
 <head>
-  <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>xinfattioc</title>
-
+  <title>Xinfattioc - Orange Edition</title>
   <link rel="icon" type="image/png" href="/icon-192x192.png">
-  
   <link rel="apple-touch-icon" href="/icon-192x192.png">
-  
   <link rel="manifest" href="/manifest.json">
-</head>
-</head>
 
+  <style>
+    /* Estilo Moderno - Blanco y Naranja */
+    :root {
+      --naranja: #ff6600; /* Tu naranja del icono */
+      --naranja-claro: #ff8533;
+      --azul-oscuro: #1a1a1a;
+      --fondo-body: #ffffff; /* Body bien claro */
+      --gris-suave: #f4f4f4;
+    }
+
+    body {
+      background-color: var(--fondo-body);
+      font-family: 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--azul-oscuro);
+    }
+
+    /* Cabecera */
+    header {
+      width: 100%;
+      background: var(--azul-oscuro);
+      color: var(--naranja);
+      padding: 15px 0;
+      text-align: center;
+      border-bottom: 4px solid var(--naranja);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    /* Contenedor Login */
+    .main-container {
+      background: white;
+      width: 85%;
+      max-width: 400px;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      border: 1px solid #eee;
+      text-align: center;
+    }
+
+    h1 {
+      color: var(--naranja);
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      margin: 8px 0;
+      border: 2px solid #eee;
+      border-radius: 12px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    input:focus {
+      border-color: var(--naranja);
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      margin-top: 15px;
+      background: var(--naranja);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 17px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: var(--naranja-claro);
+      transform: scale(1.02);
+    }
+
+    /* Sección de Vídeos y Anuncios */
+    .feed {
+      width: 95%;
+      max-width: 500px;
+      padding-bottom: 60px;
+    }
+
+    .ad-box {
+      background: #fff5ed;
+      border-left: 5px solid var(--naranja);
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .video-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      margin-bottom: 25px;
+      border: 1px solid #eee;
+    }
+
+    video {
+      width: 100%;
+      background: #000;
+      display: block;
+    }
+
+    .video-info {
+      padding: 15px;
+    }
+
+    .upload-btn {
+      display: block;
+      width: 60px;
+      height: 60px;
+      background: var(--naranja);
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 60px;
+      font-size: 30px;
+      margin: 20px auto;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(255, 102, 0, 0.4);
+    }
+  </style>
+</head>
 <body>
-  <div id="root"></div>
-  <footer style="position: fixed; bottom: 0; left: 0; width: 100%; text-align: center; padding: 10px; background: white; border-top: 1px solid #ccc; z-index: 9999; font-family: Arial, sans-serif;">
-  <p style="margin: 0; color: #333;">Reservado el derecho &copy; | Antonio Baena Moreno | <a href="http://www.tonidev71.com" target="_blank" style="color: #007bff;">www.tonidev71.com</a></p>
-</footer>
 
-  <script type="module" src="/src/main.jsx"></script>
+  <header>
+    <div style="font-weight: bold; font-size: 22px; letter-spacing: 1px;">XINFATTIOC</div>
+  </header>
+
+  <div class="main-container">
+    <h1>Inicia Sesión</h1>
+    <input type="text" placeholder="Usuario">
+    <input type="password" placeholder="Contraseña">
+    <button>ACCEDER</button>
+  </div>
+
+  <div class="feed">
+    <div class="ad-box">
+      <strong>PUBLICIDAD:</strong> ¡Sube tus vídeos virales y gana visibilidad en Xinfattioc! 🚀
+    </div>
+
+    <h2 style="border-left: 4px solid var(--naranja); padding-left: 10px; margin-left: 5px;">Vídeos Virales</h2>
+
+    <div class="video-card">
+      <video controls poster="https://via.placeholder.com/500x280/1a1a1a/ff6600?text=Cargando+Video...">
+        <source src="#" type="video/mp4">
+      </video>
+      <div class="video-info">
+        <p style="font-weight: bold; margin: 0;">Próximamente: Contenido Viral Orange</p>
+        <small style="color: #999;">Nuevo contenido cada día</small>
+      </div>
+    </div>
+
+    <label for="video-file" class="upload-btn">＋</label>
+    <input type="file" id="video-file" accept="video/*" style="display: none;">
+    <p style="text-align: center; color: var(--naranja); font-weight: bold;">Subir Vídeo</p>
+  </div>
+
 </body>
-
 </html>
