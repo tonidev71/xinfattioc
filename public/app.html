@@ -3,113 +3,157 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Xinfattioc - Publicar</title>
+  <title>Xinfattioc - Oficial</title>
   <style>
-    :root { --naranja: #ff7b25; --azul: #0a192f; --fondo: #ffffff; }
-    body { background: var(--fondo); font-family: sans-serif; margin: 0; padding-bottom: 100px; }
-    header { background: var(--azul); color: var(--naranja); padding: 15px; text-align: center; font-weight: bold; border-bottom: 3px solid var(--naranja); }
+    :root { --naranja: #ff7b25; --azul: #0a192f; --fondo: #f4f4f4; }
     
-    .layout { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 15px; max-width: 1200px; margin: 20px auto; padding: 0 10px; }
-    @media (max-width: 800px) { .layout { grid-template-columns: 1fr; } aside { display: none; } }
-
-    /* CAJA DE PUBLICAR (Lo que te faltaba) */
-    .create-post { background: white; padding: 20px; border-radius: 15px; border: 1px solid #eee; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 20px; }
+    body { background: var(--fondo); font-family: 'Segoe UI', sans-serif; margin: 0; padding-bottom: 50px; }
     
-    textarea { width: 100%; border: none; border-bottom: 1px solid #eee; resize: none; font-size: 16px; outline: none; margin-bottom: 15px; font-family: inherit; }
+    /* HEADER CON BOTÓN SALIR */
+    header { 
+      background: var(--azul); color: var(--naranja); 
+      padding: 10px 20px; display: flex; justify-content: space-between; align-items: center;
+      position: sticky; top: 0; z-index: 1000; border-bottom: 3px solid var(--naranja);
+    }
     
-    .preview-zone { width: 100%; border-radius: 10px; overflow: hidden; background: #f9f9f9; margin-bottom: 10px; }
-    .preview-zone img, .preview-zone video { width: 100%; display: block; }
+    .btn-salir { color: white; text-decoration: none; border: 1px solid var(--naranja); padding: 5px 15px; border-radius: 5px; font-size: 14px; }
 
-    .btn-publicar { background: var(--naranja); color: white; border: none; padding: 12px 25px; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; }
+    /* LAYOUT QUE SE VEA BIEN EN TODO */
+    .container { 
+      display: flex; flex-wrap: wrap; justify-content: center; 
+      max-width: 1300px; margin: 20px auto; gap: 15px; padding: 0 10px; 
+    }
 
-    /* ASIDES */
-    aside { background: #fafafa; padding: 15px; border-radius: 10px; border: 1px solid #eee; height: fit-content; }
+    aside { flex: 1; min-width: 250px; max-width: 300px; }
+    main { flex: 2; min-width: 320px; max-width: 600px; }
+
+    .card { background: white; border-radius: 12px; padding: 15px; margin-bottom: 20px; border: 1px solid #ddd; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+
+    /* MULTIMEDIA TAMAÑO FIJO */
+    .media-box { 
+      width: 100%; aspect-ratio: 16 / 9; background: #000; 
+      display: flex; align-items: center; justify-content: center; 
+      overflow: hidden; border-radius: 8px; margin: 10px 0;
+    }
+    .media-box img, .media-box video { width: 100%; height: 100%; object-fit: cover; }
+
+    /* BOTONES ACCIÓN */
+    .actions { display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 1px solid #eee; margin-top: 10px; }
+    .btn-action { background: none; border: none; padding: 10px; cursor: pointer; font-weight: bold; color: #555; }
+    .btn-action:hover { color: var(--naranja); }
+
+    /* CAJA DE TEXTO */
+    textarea { width: 100%; border: 1px solid #ddd; border-radius: 8px; padding: 10px; resize: none; box-sizing: border-box; }
+
+    /* COMENTARIOS */
+    .comment-list { background: #f9f9f9; padding: 10px; border-radius: 8px; font-size: 14px; margin-top: 10px; }
+
+    /* VIDEO VIRAL IZQUIERDA */
+    .viral-vids video { border-radius: 10px; width: 100%; margin-bottom: 10px; border: 2px solid var(--naranja); }
   </style>
 </head>
 <body>
 
-<header>XINFATTIOC</header>
+<header>
+  <div style="font-weight:bold; letter-spacing:2px;">XINFATTIOC</div>
+  <a href="index.html" class="btn-salir">SALIR</a>
+</header>
 
-<div class="layout">
-  <aside>
-    <h4 style="color:var(--naranja)">VÍDEOS VIRALES</h4>
-    <div style="background:#000; height:150px; border-radius:8px;"></div>
+<div class="container">
+  
+  <aside class="viral-vids">
+    <div class="card">
+      <h3 style="color:var(--naranja); margin-top:0;">🔥 Viral Real</h3>
+      <video controls loop muted>
+        <source src="URL_DE_TU_VIDEO_VIRAL.mp4" type="video/mp4">
+      </video>
+      <p style="font-size:12px;">Lo que está pasando ahora mismo en el Reino.</p>
+    </div>
   </aside>
 
   <main>
-    <div class="create-post">
-      <h3 style="margin-top:0; font-weight:300;">¿Qué está pasando, Marajá?</h3>
+    <div class="card">
+      <textarea id="texto-post" rows="3" placeholder="¿Qué quieres contar hoy, Marajá?"></textarea>
       
-      <textarea id="post-text" rows="3" placeholder="Escribe aquí tu mensaje..."></textarea>
-      
-      <div class="preview-zone" id="preview-box">
-        <p style="text-align:center; color:#ccc; padding:20px;">Sin multimedia seleccionada</p>
+      <div class="media-box" id="preview-container">
+        <p style="color:#666;">Selecciona una foto o vídeo</p>
       </div>
 
       <div style="display:flex; gap:10px;">
-        <label style="flex:1; text-align:center; padding:10px; border:1px solid var(--naranja); border-radius:8px; color:var(--naranja); cursor:pointer;">
-          📷 Foto/Vídeo
-          <input type="file" id="file-input" style="display:none" accept="image/*,video/*" onchange="mostrarPreview(this)">
+        <label style="flex:1; text-align:center; padding:10px; border:1px solid var(--azul); border-radius:8px; cursor:pointer;">
+          📁 Elegir Archivo
+          <input type="file" id="archivo" hidden accept="image/*,video/*" onchange="preview(this)">
         </label>
-        <button class="btn-publicar" onclick="publicarPost()">PUBLICAR</button>
+        <button onclick="publicar()" style="flex:1; background:var(--naranja); color:white; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">PUBLICAR</button>
       </div>
     </div>
 
-    <div id="feed-dinamico"></div>
+    <div id="feed">
+      </div>
   </main>
 
   <aside>
-    <h4 style="color:var(--naranja)">ANUNCIOS</h4>
-    <p style="font-size:12px;">💎 Espacio exclusivo para publicidad real.</p>
+    <div class="card">
+      <h3 style="color:var(--azul); margin-top:0;">💎 VIP Ads</h3>
+      <div id="ad-space" style="text-align:center; font-weight:bold; color:var(--naranja);">
+        Espacio para Publicidad Real
+      </div>
+    </div>
   </aside>
+
 </div>
 
 <script>
-  // Mostrar lo que seleccionas
-  function mostrarPreview(input) {
-    const box = document.getElementById('preview-box');
+  // PREVISUALIZAR
+  function preview(input) {
+    const box = document.getElementById('preview-container');
     if (input.files && input.files[0]) {
       const reader = new FileReader();
       reader.onload = function(e) {
         if (input.files[0].type.includes('video')) {
-          box.innerHTML = `<video controls src="${e.target.result}" style="width:100%"></video>`;
+          box.innerHTML = `<video controls src="${e.target.result}"></video>`;
         } else {
           box.innerHTML = `<img src="${e.target.result}">`;
         }
-      }
+      };
       reader.readAsDataURL(input.files[0]);
     }
   }
 
-  // Función para "Publicar" (conecta con tu idea de base de datos)
-  function publicarPost() {
-    const texto = document.getElementById('post-text').value;
-    const media = document.getElementById('preview-box').innerHTML;
-    const feed = document.getElementById('feed-dinamico');
+  // PUBLICAR
+  function publicar() {
+    const txt = document.getElementById('texto-post').value;
+    const media = document.getElementById('preview-container').innerHTML;
+    const feed = document.getElementById('feed');
 
-    if(texto.trim() === "" && media.includes('multimedia')) {
-      alert("Escribe algo o sube una foto");
-      return;
-    }
+    if (txt.trim() === "" && media.includes("Selecciona")) return;
 
-    // Crear el post visualmente
-    const nuevoPost = document.createElement('div');
-    nuevoPost.style = "background:white; padding:15px; border-radius:15px; margin-bottom:20px; border:1px solid #eee;";
-    nuevoPost.innerHTML = `
-      <div style="font-weight:bold; margin-bottom:10px;">ToniDev71</div>
-      <p>${texto}</p>
-      <div style="border-radius:10px; overflow:hidden;">${media}</div>
-      <div style="margin-top:10px; display:flex; gap:20px; font-size:14px; color:#666;">
-        <span>❤️ Me gusta</span> <span>💬 Comentar</span> <span>📤 Compartir</span>
+    const post = document.createElement('div');
+    post.className = 'card';
+    post.innerHTML = `
+      <div style="font-weight:bold; color:var(--azul); margin-bottom:10px;">👑 ToniDev71</div>
+      <p>${txt}</p>
+      <div class="media-box">${media}</div>
+      <div class="actions">
+        <button class="btn-action" onclick="this.style.color='#ff7b25'">❤️ Like</button>
+        <button class="btn-action" onclick="alert('Escribe en la base de datos...')">💬 Comentar</button>
+        <button class="btn-action" onclick="navigator.share({url:location.href})">📤 Compartir</button>
       </div>
     `;
+    feed.prepend(post);
     
-    feed.prepend(nuevoPost); // Pone el post arriba de todo
-    
-    // Limpiar campos
-    document.getElementById('post-text').value = "";
-    document.getElementById('preview-box').innerHTML = '<p style="text-align:center; color:#ccc; padding:20px;">Sin multimedia seleccionada</p>';
+    // Reset
+    document.getElementById('texto-post').value = "";
+    document.getElementById('preview-container').innerHTML = `<p style="color:#666;">Selecciona una foto o vídeo</p>`;
   }
+
+  // ANUNCIOS
+  const ads = ["💎 Éxito Marajá", "🚀 ToniDev71 Pro", "🧡 Publicidad Real"];
+  let i = 0;
+  setInterval(() => {
+    document.getElementById('ad-space').innerText = ads[i];
+    i = (i + 1) % ads.length;
+  }, 3000);
 </script>
 
 </body>
