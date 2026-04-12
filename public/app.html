@@ -3,36 +3,88 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Xinfattioc - Feed</title>
+  <title>Xinfattioc - Social Feed</title>
   <style>
-    :root { --naranja: #ff7b25; --gris: #f8f8f8; }
-    body { background: #ffffff; font-family: sans-serif; margin: 0; color: #333; }
-    header { padding: 20px; text-align: center; border-bottom: 1px solid #eee; letter-spacing: 2px; font-weight: 300; }
-    .content { max-width: 500px; margin: 0 auto; padding: 20px; }
-    .video-card { background: var(--gris); border-radius: 10px; overflow: hidden; margin-bottom: 30px; }
-    video { width: 100%; display: block; background: #000; }
-    .upload-box { border: 1px dashed var(--naranja); padding: 20px; border-radius: 10px; text-align: center; margin-top: 40px; }
-    .btn-subir { background: transparent; color: var(--naranja); border: 1px solid var(--naranja); padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 10px; }
-    .back { display: block; text-align: center; margin-top: 30px; font-size: 12px; color: #aaa; text-decoration: none; }
+    :root { --naranja: #ff7b25; --fondo: #f0f2f5; --blanco: #ffffff; }
+    body { background: var(--fondo); font-family: -apple-system, sans-serif; margin: 0; padding-bottom: 70px; }
+    
+    header { background: var(--blanco); padding: 15px; text-align: center; font-weight: 300; letter-spacing: 2px; border-bottom: 1px solid #ddd; position: sticky; top: 0; z-index: 100; }
+
+    /* Contenedor de la publicación */
+    .feed { max-width: 500px; margin: 10px auto; padding: 10px; }
+    
+    .post { background: var(--blanco); border-radius: 12px; margin-bottom: 15px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); overflow: hidden; }
+    
+    .post-header { padding: 12px; display: flex; align-items: center; font-weight: bold; font-size: 14px; }
+    .avatar { width: 35px; height: 35px; background: var(--naranja); border-radius: 50%; margin-right: 10px; }
+
+    .post-content img, .post-content video { width: 100%; display: block; }
+
+    /* Botones de interacción */
+    .post-actions { display: flex; padding: 10px; border-top: 1px solid #eee; }
+    .action-btn { flex: 1; background: none; border: none; color: #65676b; font-size: 13px; font-weight: 600; cursor: pointer; padding: 8px; border-radius: 5px; }
+    .action-btn:hover { background: #f2f2f2; }
+
+    /* Sección de comentarios */
+    .comments-section { padding: 10px; border-top: 1px solid #eee; background: #fafafa; }
+    .comment-input { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 20px; outline: none; font-size: 13px; }
+
+    /* Barra inferior para subir contenido */
+    .bottom-nav { position: fixed; bottom: 0; width: 100%; background: var(--blanco); display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid #ddd; }
+    .upload-label { color: var(--naranja); font-weight: bold; cursor: pointer; font-size: 14px; display: flex; flex-direction: column; align-items: center; }
+
+    .ad-banner { background: #fff5ed; border: 1px solid #ffdecb; padding: 10px; margin: 10px; border-radius: 8px; font-size: 12px; text-align: center; }
   </style>
 </head>
 <body>
-  <header>XINFATTIOC VIRAL</header>
-  
-  <div class="content">
-    <div class="video-card">
-      <video controls><source src="#" type="video/mp4"></video>
-      <p style="padding: 10px; margin: 0; font-size: 14px;">Contenido exclusivo Xinfattioc</p>
-    </div>
 
-    <div class="upload-box">
-      <p style="font-size: 14px;">SUBIR VÍDEO VIRAL</p>
-      <input type="file" accept="video/*" style="font-size: 12px;">
-      <br>
-      <button class="btn-subir">PUBLICAR</button>
-    </div>
+  <header>XINFATTIOC</header>
 
-    <a href="index.html" class="back">CERRAR SESIÓN</a>
+  <div class="ad-banner">
+    ✨ <strong>ANUNCIO:</strong> ¡Tu marca aquí! Contacta con nosotros. ✨
   </div>
+
+  <div class="feed">
+    
+    <div class="post">
+      <div class="post-header"><div class="avatar"></div> ToniDev71</div>
+      <div class="post-content">
+        <img src="https://via.placeholder.com/500x500/f8f8f8/ff7b25?text=Nueva+Imagen+Xinfattioc" alt="Imagen">
+      </div>
+      <div class="post-actions">
+        <button class="action-btn">❤️ Me gusta</button>
+        <button class="action-btn">💬 Comentar</button>
+        <button class="action-btn">📤 Compartir</button>
+      </div>
+      <div class="comments-section">
+        <input type="text" class="comment-input" placeholder="Escribe un comentario...">
+      </div>
+    </div>
+
+    <div class="post">
+      <div class="post-header"><div class="avatar"></div> Usuario_VIP</div>
+      <div class="post-content">
+        <video controls>
+          <source src="#" type="video/mp4">
+        </video>
+      </div>
+      <div class="post-actions">
+        <button class="action-btn">❤️ Me gusta</button>
+        <button class="action-btn">💬 Comentar</button>
+        <button class="action-btn">📤 Compartir</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="bottom-nav">
+    <a href="index.html" style="text-decoration:none; color:#aaa; font-size:12px;">Salir</a>
+    <label for="file-upload" class="upload-label">
+      <span style="font-size: 20px;">➕</span>
+      SUBIR POST
+    </label>
+    <input id="file-upload" type="file" accept="image/*,video/*" style="display:none;">
+    <div style="width: 30px;"></div> </div>
+
 </body>
 </html>
