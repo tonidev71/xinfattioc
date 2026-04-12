@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xinfattioc - Feed</title>
+  <style>
+    :root { --naranja: #ff7b25; --gris: #f8f8f8; }
+    body { background: #ffffff; font-family: sans-serif; margin: 0; color: #333; }
+    header { padding: 20px; text-align: center; border-bottom: 1px solid #eee; letter-spacing: 2px; font-weight: 300; }
+    .content { max-width: 500px; margin: 0 auto; padding: 20px; }
+    .video-card { background: var(--gris); border-radius: 10px; overflow: hidden; margin-bottom: 30px; }
+    video { width: 100%; display: block; background: #000; }
+    .upload-box { border: 1px dashed var(--naranja); padding: 20px; border-radius: 10px; text-align: center; margin-top: 40px; }
+    .btn-subir { background: transparent; color: var(--naranja); border: 1px solid var(--naranja); padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 10px; }
+    .back { display: block; text-align: center; margin-top: 30px; font-size: 12px; color: #aaa; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <header>XINFATTIOC VIRAL</header>
+  
+  <div class="content">
+    <div class="video-card">
+      <video controls><source src="#" type="video/mp4"></video>
+      <p style="padding: 10px; margin: 0; font-size: 14px;">Contenido exclusivo Xinfattioc</p>
+    </div>
+
+    <div class="upload-box">
+      <p style="font-size: 14px;">SUBIR VÍDEO VIRAL</p>
+      <input type="file" accept="video/*" style="font-size: 12px;">
+      <br>
+      <button class="btn-subir">PUBLICAR</button>
+    </div>
+
+    <a href="index.html" class="back">CERRAR SESIÓN</a>
+  </div>
+</body>
+</html>
